@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Song</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #181818;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1db954;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .container {
+            background-color: #282828;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #333;
+            color: #fff;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            outline: none;
+            background-color: #444;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #7f8c8d;
+        }
+
+        .button {
+            padding: 0.8rem 2rem;
+            background-color: #1db954;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .button:hover {
+            background-color: #1ed760;
+            transform: translateY(-2px);
+        }
+
+        a.button {
+            text-align: center;
+            display: block;
+            margin-top: 1rem;
+            background-color: #3498db;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Song</h1>
+        <form action="/update/<%= song.id %>" method="POST" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= song.title %>" required>
+
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist" value="<%= song.artist %>" required>
+
+            <p>Current Audio File: <%= song.filename %></p>
+
+            <label for="audioFile">Upload New Audio File (optional):</label>
+            <input type="file" id="audioFile" name="audioFile" accept="audio/*">
+
+            <button type="submit" class="button">Update Song</button>
+        </form>
+        <a href="/" class="button">Back to Playlist</a>
+    </div>
+</body>
+</html>
